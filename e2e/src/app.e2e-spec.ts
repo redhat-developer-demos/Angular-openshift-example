@@ -1,11 +1,16 @@
-import { browser, element, by, logging } from 'protractor';
+import { AppPage } from './app.po';
+import { browser, logging } from 'protractor';
 
-describe('first-app-lesson-01 app', () => {
+describe('workspace-project App', () => {
+  let page: AppPage;
 
-  beforeEach(() => browser.get(''));
+  beforeEach(() => {
+    page = new AppPage();
+  });
 
-  it('should display correct title', async () => {
-    expect(await element.all(by.css('h1')).get(0).getText()).toEqual('Hello world!');
+  it('should display welcome message', () => {
+    page.navigateTo();
+    expect(page.getTitleText()).toEqual('myapp app is running!');
   });
 
   afterEach(async () => {

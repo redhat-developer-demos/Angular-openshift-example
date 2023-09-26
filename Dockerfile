@@ -1,6 +1,6 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71
 
-RUN mkdir /project
+# RUN mkdir /project
 WORKDIR /project
 
 RUN npm install -g @angular/cli@13

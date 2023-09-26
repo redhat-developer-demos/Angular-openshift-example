@@ -5,7 +5,7 @@ WORKDIR /project
 RUN npm install -g @angular/cli@13
 
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 
 COPY . .
 EXPOSE 8080

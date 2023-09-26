@@ -8,4 +8,5 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+EXPOSE 8080
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]

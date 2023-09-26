@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71
+FROM registry.redhat.io/rhel8/nodejs-16:1-129
 
 WORKDIR /project
 

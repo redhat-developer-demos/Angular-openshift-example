@@ -1,8 +1,8 @@
-FROM registry.redhat.io/rhel8/nodejs-16:1-129
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
 WORKDIR /project
 
-RUN npm install -g @angular/cli@13
+RUN npm install -g @angular/cli
 
 COPY package.json package-lock.json ./
 RUN npm ci

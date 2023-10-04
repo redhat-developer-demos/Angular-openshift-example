@@ -58,6 +58,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "hello-world-app:build",
+            "port": 8080,
+            "host": "0.0.0.0",
+            "disableHostCheck": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "hello-world-app:build:production"

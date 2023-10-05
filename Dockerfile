@@ -4,6 +4,8 @@ WORKDIR /project
 
 COPY --chown=1001:1001 package.json package-lock.json ./
 # USER root
+RUN npm install -g @angular/cli@latest
+
 RUN npm ci
 
 COPY --chown=1001:1001 . .

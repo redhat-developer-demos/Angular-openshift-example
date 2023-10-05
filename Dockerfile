@@ -18,17 +18,18 @@ COPY --chown=1000:1000 . .
 
 RUN npm run build
 RUN npm prune
+CMD ["npm", "start"]
 
 # Run
-FROM base
+# FROM base
 
-ENV PORT=$PORT
+# ENV PORT=$PORT
 
-COPY --from=build /src/.output /src/.output
-# Optional, only needed if you rely on unbundled dependencies
-# COPY --from=build /src/node_modules /src/node_modules
+# COPY --from=build /src/.output /src/.output
+# # Optional, only needed if you rely on unbundled dependencies
+# # COPY --from=build /src/node_modules /src/node_modules
 
-CMD [ "node", ".output/server/index.mjs" ]
+# CMD [ "node", ".output/server/index.mjs" ]
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # RUN echo $(ls -l /)

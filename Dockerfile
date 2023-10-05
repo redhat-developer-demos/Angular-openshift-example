@@ -4,13 +4,13 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 WORKDIR /app
 
 COPY package.json ./
-
+VOLUME ["/app"]
 RUN npm install
 
 COPY . ./
 
 VOLUME ["/.npm/_logs"]
-VOLUME ["/app"]
+
 
 # RUN npm config set prefix ~/.npm-global
 # RUN export PATH=~/.npm-global/bin:$PATH

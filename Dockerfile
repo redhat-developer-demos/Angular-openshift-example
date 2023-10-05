@@ -1,29 +1,44 @@
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
-# FROM node:18-alpine
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
-WORKDIR /app
+# USER root
 
-COPY package.json ./
+WORKDIR /project
 
-USER root 
+COPY package.json package-lock.json ./
+RUN npm ci
 
-VOLUME ["/app"]
-
-RUN npm install
-
-COPY . ./
-
-VOLUME ["/.npm/_logs"]
-
-
-# RUN npm config set prefix ~/.npm-global
-# RUN export PATH=~/.npm-global/bin:$PATH
+COPY . .
 
 EXPOSE 8080
 
-USER 1001
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
 
-CMD ["ng", "serve"]
+# FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
+# # FROM node:18-alpine
+
+# WORKDIR /app
+
+# COPY package.json ./
+
+# USER root 
+
+# VOLUME ["/app"]
+
+# RUN npm install
+
+# COPY . ./
+
+# VOLUME ["/.npm/_logs"]
+
+
+# # RUN npm config set prefix ~/.npm-global
+# # RUN export PATH=~/.npm-global/bin:$PATH
+
+# EXPOSE 8080
+
+# USER 1001
+
+# CMD ["ng", "serve"]
 
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 

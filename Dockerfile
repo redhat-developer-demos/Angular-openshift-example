@@ -1,3 +1,35 @@
+ARG NODE_VERSION=18.14.2
+
+FROM node:${NODE_VERSION}-slim as base
+
+ARG PORT=3000
+
+ENV NODE_ENV=production
+
+WORKDIR /src
+
+# Build
+FROM base as build
+
+COPY --chown=1000:1000 package.json  .
+RUN npm install --production=false
+
+COPY --chown=1000:1000 . .
+
+RUN npm run build
+RUN npm prune
+
+# Run
+FROM base
+
+ENV PORT=$PORT
+
+COPY --from=build /src/.output /src/.output
+# Optional, only needed if you rely on unbundled dependencies
+# COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "node", ".output/server/index.mjs" ]
+
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # RUN echo $(ls -l /)
 # USER root
@@ -18,15 +50,15 @@
 
 #stage 1
 
-FROM node:18
-WORKDIR /app
-ENV NODE_ENV=development
-COPY --chown=1001:1001 . .
-RUN npm cache clean --force
-RUN npm install 
-EXPOSE 8080
-# RUN npm run build --prod
-CMD ["npm", "start"]
+# FROM node:18
+# WORKDIR /app
+# ENV NODE_ENV=development
+# COPY --chown=1001:1001 . .
+# RUN npm cache clean --force
+# RUN npm install 
+# EXPOSE 8080
+# # RUN npm run build --prod
+# CMD ["npm", "start"]
 
 
 
@@ -43,4 +75,4 @@ CMD ["npm", "start"]
 # COPY . .
 # EXPOSE 8080
 # CMD [ "node", "server.js" ]
-CMD ["npm", "start"]
+# CMD ["npm", "start"]

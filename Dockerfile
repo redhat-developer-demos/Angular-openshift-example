@@ -4,7 +4,9 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 WORKDIR /app
 
 COPY package.json ./
-VOLUME ["/app"]
+
+VOLUME ["/app/node_modules"]
+
 RUN npm install
 
 COPY . ./

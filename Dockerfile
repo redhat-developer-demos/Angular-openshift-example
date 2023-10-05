@@ -6,7 +6,7 @@ FROM node:18
 
 WORKDIR /project
 
-COPY package.json package-lock.json ./
+COPY chown -R 1001:1001 package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
@@ -14,7 +14,7 @@ COPY . .
 RUN chown -R 1001:1001 /project/
 
 EXPOSE 8080
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
+# CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # RUN echo $(ls -l /)
@@ -43,8 +43,8 @@ CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
 # RUN npm cache clean --force
 # RUN npm install 
 # EXPOSE 8080
-# # RUN npm run build --prod
-# CMD ["npm", "start"]
+# RUN npm run build --prod
+CMD ["npm", "start"]
 
 
 

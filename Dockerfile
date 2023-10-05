@@ -1,4 +1,5 @@
-FROM node:18-alpine
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
+# FROM node:18-alpine
 
 WORKDIR /app
 

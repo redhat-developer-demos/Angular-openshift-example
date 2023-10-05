@@ -19,8 +19,8 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 as node
 #stage 1
 # FROM node:latest as node
 WORKDIR /app
-COPY . .
-RUN npm ci
+COPY --chown=1001:1001 . .
+RUN npm install
 RUN npm run build --prod
 #stage 2
 FROM nginx:alpine

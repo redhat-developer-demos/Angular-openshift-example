@@ -1,35 +1,20 @@
-ARG NODE_VERSION=18.14.2
+FROM node:18
+# FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
-FROM node:${NODE_VERSION}-slim as base
+# RUN ls
+# USER root
 
-ARG PORT=3000
+WORKDIR /project
 
-ENV NODE_ENV=production
+COPY package.json package-lock.json ./
+RUN npm ci
 
-WORKDIR /src
+COPY . .
 
-# Build
-FROM base as build
+RUN chown -R 1001:1001 /project/
 
-COPY package.json  .
-RUN npm install 
-
-COPY  . .
-
-RUN npm run build --prod
-# RUN npm prune
-CMD ["npm", "start"]
-
-# Run
-# FROM base
-
-# ENV PORT=$PORT
-
-# COPY --from=build /src/.output /src/.output
-# # Optional, only needed if you rely on unbundled dependencies
-# # COPY --from=build /src/node_modules /src/node_modules
-
-# CMD [ "node", ".output/server/index.mjs" ]
+EXPOSE 8080
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # RUN echo $(ls -l /)

@@ -1,10 +1,9 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
 
-# USER root
-
 WORKDIR /project
 
 COPY package.json package-lock.json ./
+USER root
 RUN npm ci
 
 COPY . .

@@ -16,8 +16,8 @@ RUN npm install --production=false
 
 COPY --chown=1000:1000 . .
 
-RUN npm run build
-RUN npm prune
+# RUN npm run build
+# RUN npm prune
 CMD ["npm", "start"]
 
 # Run

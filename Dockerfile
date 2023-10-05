@@ -5,7 +5,9 @@ WORKDIR /app
 
 COPY package.json ./
 
-VOLUME ["/app/node_modules"]
+USER root 
+
+VOLUME ["/app"]
 
 RUN npm install
 

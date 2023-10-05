@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 #as node
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # RUN echo $(ls -l /)
 # USER root
 
@@ -22,7 +22,7 @@ WORKDIR /app
 ENV NODE_ENV=development
 COPY --chown=1001:1001 . .
 RUN npm cache clean --force
-RUN npm install # --production
+RUN npm install 
 EXPOSE 8080
 # RUN npm run build --prod
 CMD ["npm", "start"]

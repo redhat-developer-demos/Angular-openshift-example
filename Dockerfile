@@ -18,15 +18,30 @@ USER root
 
 #stage 1
 # FROM node:latest as node
-WORKDIR /app
-COPY --chown=1001:1001 . .
-RUN npm cache clean --force
-RUN npm install
+# WORKDIR /app
+# COPY --chown=1001:1001 . .
+# RUN npm cache clean --force
+# RUN npm install
 # EXPOSE 8080
-RUN npm run build --prod
+# RUN npm run build --prod
 # CMD ["npm", "start"]
+
 #stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+# FROM nginx:alpine
+# COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html
+# EXPOSE 80
+# CMD ["nginx", "-g", "daemon off;"]
+
+COPY package*.json ./
+
+# Install npm production packages 
+RUN npm install --production
+
+COPY . /opt/app-root/src
+
+ENV NODE_ENV production
+ENV PORT 8080
+
+EXPOSE 8080
+
+CMD ["npm", "start"]

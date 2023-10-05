@@ -1,20 +1,17 @@
-FROM node:18
-# FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
+FROM node:18-alpine
 
-# RUN ls
-# USER root
+WORKDIR /app
 
-WORKDIR /project
+COPY package.json ./
 
-COPY chown -R 1001:1001 package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
-COPY . .
-
-RUN chown -R 1001:1001 /project/
+COPY . ./
 
 EXPOSE 8080
-# CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
+
+CMD ["npm", "start"]
+
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # RUN echo $(ls -l /)
@@ -44,7 +41,7 @@ EXPOSE 8080
 # RUN npm install 
 # EXPOSE 8080
 # RUN npm run build --prod
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
 
 
 

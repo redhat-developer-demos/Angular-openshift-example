@@ -20,8 +20,9 @@ FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 as node
 # FROM node:latest as node
 WORKDIR /app
 COPY --chown=1001:1001 . .
+RUN npm cache clean --force
 RUN npm install
 RUN npm run build --prod
 #stage 2
 FROM nginx:alpine
-COPY --from=node /app/dist/demo-app /usr/share/nginx/html
+COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html

@@ -11,7 +11,7 @@ RUN npm ci
 
 COPY . .
 
-RUN chown -R 1001:1001 /project
+RUN chown -R 1001:1001 /project/.angular
 
 EXPOSE 8080
 CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]

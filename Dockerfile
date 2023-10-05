@@ -9,6 +9,7 @@ RUN npm install
 COPY . ./
 
 VOLUME ["/.npm/_logs"]
+VOLUME ["/app/.angular"]
 
 # RUN npm config set prefix ~/.npm-global
 # RUN export PATH=~/.npm-global/bin:$PATH

@@ -22,7 +22,8 @@ WORKDIR /app
 COPY --chown=1001:1001 . .
 RUN npm cache clean --force
 RUN npm install
+EXPOSE 8080
 RUN npm run build --prod
-#stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html
+# #stage 2
+# FROM nginx:alpine
+# COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html

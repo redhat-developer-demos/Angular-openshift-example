@@ -24,6 +24,7 @@ RUN npm cache clean --force
 RUN npm install
 EXPOSE 8080
 RUN npm run build --prod
+CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
 # #stage 2
 # FROM nginx:alpine
 # COPY --from=node /app/dist/hello-world-app /usr/share/nginx/html

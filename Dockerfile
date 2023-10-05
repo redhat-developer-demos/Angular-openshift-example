@@ -8,8 +8,10 @@ RUN npm install
 
 COPY . ./
 
-RUN npm config set prefix ~/.npm-global
-RUN export PATH=~/.npm-global/bin:$PATH
+VOLUME ["/.npm/_logs"]
+
+# RUN npm config set prefix ~/.npm-global
+# RUN export PATH=~/.npm-global/bin:$PATH
 
 EXPOSE 8080
 

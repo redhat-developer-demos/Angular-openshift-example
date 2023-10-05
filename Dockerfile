@@ -10,8 +10,8 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-COPY upload/src /tmp/src
-RUN chown -R 1001:0 /tmp/src
-USER 1001
+
+RUN chown -R 1001:1001 /project
+
 EXPOSE 8080
 CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]

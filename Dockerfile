@@ -1,17 +1,27 @@
-FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533
-RUN echo $(ls -l /)
-USER root
+FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 as node
+# RUN echo $(ls -l /)
+# USER root
 
-WORKDIR /project
+# WORKDIR /project
 
-RUN npm install @angular/cli
+# RUN npm install @angular/cli
 
-COPY package.json package-lock.json ./
-RUN npm ci
+# COPY package.json package-lock.json ./
+# RUN npm ci
 
+# COPY . .
+
+# RUN chown -R 1001:1001 /project/
+
+# EXPOSE 8080
+# CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
+
+#stage 1
+# FROM node:latest as node
+WORKDIR /app
 COPY . .
-
-RUN chown -R 1001:1001 /project/
-
-EXPOSE 8080
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
+RUN npm install
+RUN npm run build --prod
+#stage 2
+FROM nginx:alpine
+COPY --from=node /app/dist/demo-app /usr/share/nginx/html

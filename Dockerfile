@@ -23,7 +23,7 @@ EXPOSE 8080
 
 USER 1001
 
-CMD ["npm", "run"]
+CMD ["ng", "serve"]
 
 
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 

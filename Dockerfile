@@ -11,12 +11,12 @@ WORKDIR /src
 # Build
 FROM base as build
 
-COPY --chown=1000:1000 package.json  .
-RUN npm install --production=false
+COPY package.json  .
+RUN npm install 
 
-COPY --chown=1000:1000 . .
+COPY  . .
 
-# RUN npm run build
+RUN npm run build --prod
 # RUN npm prune
 CMD ["npm", "start"]
 

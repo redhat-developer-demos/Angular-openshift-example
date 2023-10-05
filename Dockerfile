@@ -10,8 +10,8 @@ COPY --chown=1001:1001 . .
 
 EXPOSE 8080
 
-CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
-
+# CMD ["ng", "serve", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["npm", "start"]
 # FROM registry.access.redhat.com/ubi8/nodejs-18:1-71.1695741533 
 # # FROM node:18-alpine
 

@@ -12,11 +12,10 @@ Follow these steps to start your sandbox instance and deploy your Angular app:
 5. On the left side menu, click on **+Add**.
 6. Select **Import from Git**.
 7. Specify your Git repo URL: [https://github.com/redhat-developer-demos/Angular-openshift-example.git](https://github.com/redhat-developer-demos/Angular-openshift-example.git).
-8. In the 'Resource Type' field, please choose either **Deployment** or **Serverless Deployment** (default option).
-9. Define the port according to your specific requirements.
-10. When you click the 'Build Configuration' button, proceed to define the environment variables. Set the Name to **NODE_ENV** and the Value to **development**. (By default, the build occurs in production mode.)
-11. Click on **Create**.
-12. You will now be directed to the Topology view, and the application will commence deployment. Please allow approximately one minute for the deployment process to complete. While it is in progress, you will have the opportunity to monitor the logs.
-13. Once it’s done deploying, you can click on the ***↗*** OpenURL button to see the UI of your Angular application running on OpenShift.
+8. It will detect the Dockerfile from the git repository. If the Dockerfile is in a subdirectory that case we have to define a path.
+9. In the 'Resource Type' field, please choose either **Deployment** or **Serverless Deployment** (default option).
+10. Click on **Create**.
+11. You will now be directed to the Topology view, and the application will commence deployment. Please allow approximately one minute for the deployment process to complete. While it is in progress, you will have the opportunity to monitor the logs.
+12. Once it’s done deploying, you can click on the ***↗*** OpenURL button to see the UI of your Angular application running on OpenShift.
 
 Congratulations! You've successfully deployed a basic Angular application on the OpenShift sandbox environment, all without the need for intricate configurations. 
